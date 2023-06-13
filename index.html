@@ -21,19 +21,22 @@
   <body>
     <!-- Navbar Start  -->
 
-    <nav class="navbar sticky-top" style="background-color: #e3f2fd">
-      <div class="container">
+    <nav
+      class="navbar justify-content-center sticky-top mb-5"
+      style="background-color: #e3f2fd"
+    >
+      <div class="container justify-content-between">
         <a class="navbar-brand" href="#"
           ><img
             src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/69/IMDB_Logo_2016.svg/2560px-IMDB_Logo_2016.svg.png"
             alt="IMDb"
             width="80px"
         /></a>
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+        <ul class="navbar-nav mb-2 mb-lg-">
           <li class="nav-item">
             <a
               class="nav-link"
-              href="#"
+              href="/watchlist.html"
               style="
                 color: deeppink;
                 font-size: 20px;
@@ -46,25 +49,73 @@
             >
           </li>
         </ul>
-        <form class="d-flex" role="search">
-          <input
-            class="form-control me-2"
-            type="search"
-            placeholder="Search IMdb"
-            aria-label="Search"
-          />
-          <button class="btn btn-primary" type="submit">
-            <i class="bi bi-search"></i>
-          </button>
-        </form>
+        <div class="search-container">
+          <div class="search-element">
+            <input
+              type="text"
+              class="form-control me-3"
+              placeholder="Search IMDb"
+              id="movie-search-box"
+              onkeyup="findMovies()"
+              onclick="findMovies()"
+              class="d-block col-sm-4 col-lg-3 col-12"
+            />
+
+            <div class="search-list" id="search-list">
+              <!-- list here -->
+              <!-- <div class = "search-list-item">
+                      <div class = "search-item-thumbnail">
+                          <img src = "medium-cover.jpg">
+                      </div>
+                      <div class = "search-item-info">
+                          <h3>Guardians of the Galaxy Vol. 2</h3>
+                          <p>2017</p>
+                      </div>
+                  </div> -->
+            </div>
+          </div>
+        </div>
       </div>
     </nav>
     <!-- Navbar End  -->
 
+    <!-- Container start  -->
+    <div class="container mb-5">
+      <div class="result-container">
+        <div class="result-grid row" id="result-grid">
+          <!-- movie information here -->
+          <!-- <div class = "movie-poster">
+                  <img src = "medium-cover.jpg" alt = "movie poster">
+              </div>
+              <div class = "movie-info">
+                  <h3 class = "movie-title">Guardians of the Galaxy Vol. 2</h3>
+                  <ul class = "movie-misc-info">
+                      <li class = "year">Year: 2017</li>
+                      <li class = "rated">Ratings: PG-13</li>
+                      <li class = "released">Released: 05 May 2017</li>
+                  </ul>
+                  <p class = "genre"><b>Genre:</b> Action, Adventure, Comedy</p>
+                  <p class = "writer"><b>Writer:</b> James Gunn, Don Abnett, Andy Lanning</p>
+                  <p class = "actors"><b>Actors: </b>Chris Pratt, Zoe Saldana, Dave Bautista</p>
+                  <p class = "plot"><b>Plot:</b> The Guardians struggle to keep together as a team while dealing with their personal family issues, notably Star-Lord's ecounter with his father the ambitious celestial being Ego.</p>
+                  <p class = "language"><b>Language:</b> English</p>
+                  <p class = "awards"><b>Award:</b> Nominated for 1 Oscar</p>
+              </div> -->
+        </div>
+      </div>
+    </div>
+    <!-- Container End  -->
+
+    <!-- Grid Start  -->
+    <div id="grid" class="container justify-content-center">
+      <div class="row" id="grid_append"></div>
+    </div>
+    <!-- Grid End  -->
     <script
       src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"
       integrity="sha384-geWF76RCwLtnZ8qwWowPQNguL3RmwHVBC9FhGdlKrxdiJJigb/j/68SIy3Te4Bkz"
       crossorigin="anonymous"
     ></script>
+    <script src="/script.js"></script>
   </body>
 </html>
