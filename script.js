@@ -45,6 +45,7 @@ function displayMovieList(movies) {
   loadMovieDetails();
 }
 
+let addMovies = [];
 function loadMovieDetails() {
   const searchListMovies = searchList.querySelectorAll(".search-list-item");
   searchListMovies.forEach((movie) => {
@@ -56,7 +57,9 @@ function loadMovieDetails() {
         `http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=fc1fef96`
       );
       const movieDetails = await result.json();
-      // console.log(movieDetails);
+      console.log(movieDetails);
+      addMovies.push(movieDetails);
+      localStorage.setItem("movies", JSON.stringify(addMovies)) || [];
       displayMovieDetails(movieDetails);
     });
   });
@@ -82,7 +85,7 @@ function displayMovieDetails(details) {
         <p class = "plot"><b>Plot:</b> ${details.Plot}</p>
         <p class = "language"><b>Language:</b> ${details.Language}</p>
         <p class = "awards"><b>Award:</b> ${details.Awards}</p>
-        <button class="btn btn-danger"><i class="bi bi-plus-square-fill"></i> Watchlist</button>
+        <button onclick="addToWatchlist()" class="btn btn-danger"><i class="bi bi-plus-square-fill"></i> Watchlist</button>
     </div>
     `;
 }
@@ -98,7 +101,7 @@ window.addEventListener("click", (event) => {
 let grid = document.getElementById("grid_append");
 fetchData = async () => {
   try {
-    const res = await fetch(`https://www.omdbapi.com/?s=thor&apikey=49fa8152`);
+    const res = await fetch(`https://www.omdbapi.com/?s=good&apikey=49fa8152`);
     const data = await res.json();
     // console.log(data.Search);
     showData(data.Search);
@@ -115,8 +118,47 @@ showData = (data) => {
     <img src=${Poster} class="mb-2 img-fluid" alt=${Title}/>
     <h5>${Title}</h5>
     <p>${Year}</p>
-    <button class="btn btn-danger"><i class="bi bi-plus-square-fill"></i> Watchlist</button>
+    <button onclick="addToWatchlist()" class="btn btn-danger"><i class="bi bi-plus-square-fill"></i> Watchlist</button>
     </div>`;
     grid.insertAdjacentHTML("beforeend", gridData);
+  });
+};
+
+// Grid Movies JS End
+
+// Whatslist Start
+
+addToWatchlist = () => {
+  alert("Added into Watchlist");
+};
+removeToWatchlist = () => {
+  alert("Remove from Watchlist");
+};
+
+// Watchlist
+const watchList = document.getElementById("watchlist");
+
+fetchWatchList = async () => {
+  try {
+    const res = await fetch(`https://www.omdbapi.com/?s=thor&apikey=49fa8152`);
+    const data = await res.json();
+    // console.log(data.Search);
+    showWatchList(data.Search);
+  } catch (error) {
+    console.log(error);
+  }
+};
+fetchWatchList();
+showWatchList = (data) => {
+  data.forEach((movie) => {
+    const { Poster, Title, Year } = movie;
+    // console.log(movie);
+    const gridWatchList = `<div class="mb-5 col-md-6 col-10 col-lg-4 col-xl-3 mx-auto" id="grid-item">
+    <img src=${Poster} class="mb-2 img-fluid" alt=${Title}/>
+    <h5>${Title}</h5>
+    <p>${Year}</p>
+    <button onclick="removeToWatchlist()" class="btn btn-danger"><i class="bi bi-dash-square-fill"></i> Remove From Watchlist</button>
+    </div>`;
+    watchList.insertAdjacentHTML("beforeend", gridWatchList);
   });
 };

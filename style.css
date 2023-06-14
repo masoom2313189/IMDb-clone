@@ -3,20 +3,17 @@ ul li a:hover {
   border-radius: 5px;
 }
 
-#grid_append button {
+#grid_append button,
+#watchlist button {
   width: 100%;
   font-weight: bold;
   padding: 10px 0;
 }
 
-#grid_append img {
+#grid_append img,
+#watchlist img {
   width: 300px;
   height: 400px;
-}
-
-#slider-img {
-  width: 80%;
-  height: 500px;
 }
 
 #back {
