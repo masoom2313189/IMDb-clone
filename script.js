@@ -5,7 +5,7 @@ const resultGrid = document.getElementById("result-grid");
 
 // load movies from API
 async function loadMovies(searchTerm) {
-  const URL = `https://omdbapi.com/?s=${searchTerm}&page=1&apikey=fc1fef96`;
+  const URL = `https://omdbapi.com/?s=${searchTerm}&page=1&apikey=49fa8152`;
   const res = await fetch(`${URL}`);
   const data = await res.json();
   // console.log(data.Search);
@@ -54,7 +54,7 @@ function loadMovieDetails() {
       searchList.classList.add("hide-search-list");
       movieSearchBox.value = "";
       const result = await fetch(
-        `http://www.omdbapi.com/?i=${movie.dataset.id}&apikey=fc1fef96`
+        `https://www.omdbapi.com/?i=${movie.dataset.id}&apikey=49fa8152`
       );
       const movieDetails = await result.json();
       console.log(movieDetails);
@@ -141,16 +141,16 @@ const watchList = document.getElementById("watchlist");
 fetchWatchList = async () => {
   try {
     const res = await fetch(`https://www.omdbapi.com/?s=thor&apikey=49fa8152`);
-    const data = await res.json();
+    const item = await res.json();
     // console.log(data.Search);
-    showWatchList(data.Search);
+    showWatchList(item.Search);
   } catch (error) {
     console.log(error);
   }
 };
 fetchWatchList();
-showWatchList = (data) => {
-  data.forEach((movie) => {
+showWatchList = (item) => {
+  item.forEach((movie) => {
     const { Poster, Title, Year } = movie;
     // console.log(movie);
     const gridWatchList = `<div class="mb-5 col-md-6 col-10 col-lg-4 col-xl-3 mx-auto" id="grid-item">
